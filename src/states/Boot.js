@@ -26,7 +26,7 @@ export default class Boot extends Phaser.State {
 
     //  Adjust the scaling mode of the game canvas. Example: If you're
     //  developing a pixel-art game, set it to 'USER_SCALE'.
-    this.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
+    this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
 
     //  When using 'USER_SCALE' scaling mode, use this method to adjust the
     //  scaling factor.
@@ -34,7 +34,7 @@ export default class Boot extends Phaser.State {
 
     //  Uncomment the following line to adjust the rendering of the canvas to
     //  crisp graphics. Great for pixel art!
-    // Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
+    Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
 
     //  If the game canvas loses focus, keep the game loop running.
     this.stage.disableVisibilityChange = true;

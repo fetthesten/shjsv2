@@ -19,4 +19,14 @@ export const preloaderAssets = [{
 export const gameAssets = [{
   key: 'phaser',
   type: 'image'
-}];
+}, {
+	key: 'bg',
+	type: 'image'
+}, {
+	key: 'testguy',
+	type: 'image'
+}, {
+	key: 'bullet01',
+	type: 'image'
+}
+];
