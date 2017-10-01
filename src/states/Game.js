@@ -4,6 +4,7 @@
  */
 import Player from '../objects/Player';
 import Enemy from '../objects/Enemy';
+import BulletMachinegun from '../objects/BulletMachinegun';
 
 import Pools from '../objects/Pools';
  
@@ -11,14 +12,7 @@ export default class Game extends Phaser.State
 {
 	create() 
 	{
-		this.game.spritePools = new Pools(this.game, 
-		{
-			'Enemy':
-			{
-				'class': Enemy,
-				'count': 25
-			}
-		});
+		
 		
 		// set up keys
 		this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -31,6 +25,15 @@ export default class Game extends Phaser.State
 		
 		this.player = new Player(this.game, this.game.world.centerX, this.game.world.centerY, 'testguy');
 		this.game.add.existing(this.player);
+		
+		this.game.spritePools = new Pools(this.game, 
+		{
+			'BulletMachinegun':
+			{
+				'class': BulletMachinegun,
+				'count': 100
+			}
+		});
 		
 		this.player.spawnProjectile.add(this.spawnProjectile, this);
 	}
@@ -46,10 +49,10 @@ export default class Game extends Phaser.State
 		this.player.shoot = this.keys['shoot'].isDown;
 	}
 	
-	spawnProjectile(x = 0, y = 0, p = 'bullet01', xDir = 1, owner = this)
+	spawnProjectile(x = 0, y = 0, p = 'BulletMachinegun', xDir = 1, owner = this)
 	{
-		// todo: implement object pools and proper prototypes and stuff
-		var s = this.game.add.sprite(x, y, p);
-		
+		var s = this.game.spritePools.getPool(p).getFirstDead(true);
+		s.reset();
+		s.init(x, y, xDir, owner);
 	}
 }

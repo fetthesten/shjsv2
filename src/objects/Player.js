@@ -76,7 +76,7 @@ export default class Player extends Phaser.Sprite
 	
 	fire()
 	{
-		this.spawnProjectile.dispatch(this.x, this.y, 'bullet01', this.lastXDir, this);
+		this.spawnProjectile.dispatch(this.x, this.y, 'BulletMachinegun', this.lastXDir, this);
 		this.nextShot = this.game.time.time + this.shotCooldown;
 	}
 }
